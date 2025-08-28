@@ -187,7 +187,7 @@ function enhanceMenuActions(){
     loc.href = gmaps; loc.target = '_blank'; loc.rel = 'noopener noreferrer';
     loc.setAttribute('aria-label','Abrir ubicación en Google Maps');
     const locImg = document.createElement('img');
-    locImg.src = '/images/localizacao.jpg';
+    locImg.src = 'images/localizacao.jpg';
     locImg.alt = 'Ubicación'; locImg.loading = 'lazy';
     loc.appendChild(locImg);
 
@@ -197,7 +197,7 @@ function enhanceMenuActions(){
     const msg = `Hola! Me gustaría pedir ${label}.`;
     wpp.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
     const wppImg = document.createElement('img');
-    wppImg.src = '/images/wpp.jpg';
+    wppImg.src = 'images/wpp.jpg';
     wppImg.alt = 'WhatsApp'; wppImg.loading = 'lazy';
     wpp.appendChild(wppImg);
 
