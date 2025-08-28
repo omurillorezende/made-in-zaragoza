@@ -1,0 +1,347 @@
+:root{
+  --bg:#071c12;
+  --card:#0c2a1a;
+  --muted:#b7c2b9;
+  --text:#f1f5f2;
+  --brand:#009B3A;
+  --brand-2:#FFDF00;
+  --brand-3:#00d084;
+  --ring:rgba(0,155,58,.25);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(0,155,58,.25) 0%, transparent 60%),
+    radial-gradient(1000px 500px at 120% 20%, rgba(255,223,0,.15) 0%, transparent 60%),
+    radial-gradient(800px 500px at -20% 100%, rgba(0,208,132,.10) 0%, transparent 60%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+a{color:inherit; text-decoration:none}
+.container{width:min(1100px, 92%); margin-inline:auto}
+
+/* Header */
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(6px);
+  background:linear-gradient(to bottom, rgba(5,20,12,.9), rgba(5,20,12,.35));
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; padding:20px 0;
+}
+.brand{display:flex; align-items:center; gap:14px}
+.brand img{
+  height:76px; width:76px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--brand-2);
+  box-shadow:0 0 0 6px rgba(255,223,0,.12);
+}
+.brand-name{
+  font-weight:800; font-size:clamp(22px, 3.2vw, 36px);
+  text-transform:uppercase; letter-spacing:.6px;
+  background:linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  text-align:center; display:block;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.4));
+}
+
+/* Social icons */
+.social{display:flex;align-items:center;gap:12px}
+.icon-circle{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.15);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  cursor:pointer; transition:transform .12s ease, box-shadow .2s ease, background .2s ease;
+}
+.icon-circle:hover{box-shadow:0 0 0 6px var(--ring); transform:translateY(-1px); background:linear-gradient(135deg, rgba(255,223,0,.2), rgba(0,155,58,.2))}
+.icon-circle svg{width:20px; height:20px}
+
+/* Hero */
+.hero{padding:92px 0 56px; text-align:center}
+.hero h1{font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; letter-spacing:.2px}
+.hero p{margin:0 auto; max-width:760px; color:var(--muted)}
+.cta{display:flex; justify-content:center; gap:.8rem; margin-top:20px; flex-wrap:wrap}
+.btn{
+  appearance:none; border:1px solid rgba(255,255,255,.12); padding:12px 16px; border-radius:999px;
+  cursor:pointer; background:#0c2a1a; color:var(--text); font-weight:700;
+  display:inline-flex; align-items:center; gap:.5rem;
+  transition: box-shadow .2s ease, transform .12s ease, background .2s ease;
+}
+.btn-primary{background:linear-gradient(135deg, var(--brand-2), var(--brand)); color:#04210f; border-color:transparent}
+.btn:hover{box-shadow:0 0 0 6px var(--ring); transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+
+/* Sections & cards */
+section{padding:56px 0}
+.card{
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.25);
+  padding:20px; overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:conic-gradient(from 180deg at 50% 50%,
+    rgba(255,223,0,.35), rgba(0,155,58,.35), rgba(255,223,0,.35));
+
+  /* WebKit */
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+
+  /* Padrão */
+  mask: linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  padding:1px;
+  pointer-events:none;
+}
+
+.card:hover{box-shadow:0 18px 40px rgba(0,0,0,.35)}
+
+/* Section headings */
+section h2{position:relative; margin-bottom:14px}
+section h2::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; margin-inline:auto; width:120px; height:3px;
+  background:linear-gradient(90deg, var(--brand-2), var(--brand)); border-radius:999px; opacity:.9;
+}
+
+/* Promos */
+.promos-head{display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:16px}
+.promos-head h2{margin:0; font-size:clamp(22px,3vw,32px)}
+.carousel{position:relative}
+.carousel.card{padding:14px}
+.track{display:flex; gap:12px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:8px}
+.track::-webkit-scrollbar{height:8px}
+.track::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2); border-radius:999px}
+/* (padronizado abaixo, seção de miniaturas/destaque) */
+
+/* Instagram */
+.insta{display:grid; grid-template-columns:1fr; gap:20px}
+.gallery{position:relative}
+.gallery .gtrack{display:flex; gap:16px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:8px}
+.gallery .gtrack::-webkit-scrollbar{height:8px}
+.gallery .gtrack::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2); border-radius:999px}
+.gallery .gitem{flex:0 0 clamp(240px, 32vw, 320px); scroll-snap-align:start; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.1); box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.gallery .gitem img{display:block; width:100%; aspect-ratio:1/1; object-fit:cover}
+
+/* Ubicación */
+.loc{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+@media (max-width: 880px){ .loc{grid-template-columns:1fr} }
+.mapbox{overflow:hidden}
+.mapbox iframe{display:block; width:100%; height:320px; border:0; border-radius:calc(var(--radius) - 2px)}
+
+/* Footer */
+footer{padding:30px 0 60px; color:var(--muted); font-size:14px}
+.footer-grid{display:grid; grid-template-columns: 1fr auto; gap:16px; align-items:center}
+@media (max-width:640px){ .footer-grid{grid-template-columns:1fr} }
+
+/* Motion reduce */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important}
+}
+
+/* Chips (sabores) */
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border-radius:999px; font-weight:700; color:var(--text);
+}
+.chip::before{
+  content:""; width:8px; height:8px; border-radius:999px;
+  background:linear-gradient(135deg, var(--brand-2), var(--brand));
+}
+
+/* Offset para a galeria ficar mais abaixo */
+#instagram{ margin-top: 40px; }
+@media (min-width: 880px){ #instagram{ margin-top: 64px; } }
+
+/* Chips compactos (dentro do card de pastéis) */
+.chips--tight{ gap:6px }
+.chips--tight .chip{ padding:6px 10px; font-size:14px }
+
+/* Menu (cardápio) */
+.menu-card{padding:28px; position:relative; overflow:hidden}
+.menu-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:10px}
+.menu-head-right{display:flex; align-items:center; gap:10px}
+.menu-head .note{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border-radius:999px; color:var(--text); font-weight:800; letter-spacing:.2px
+}
+.menu-head .note::before{ content:"✨" }
+.menu-list{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px 24px; margin-top:8px}
+@media (max-width:720px){ .menu-list{grid-template-columns:1fr} }
+.menu-item{
+  position:relative; padding:10px 12px; border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  font-weight:700; display:flex; align-items:center; gap:10px;
+}
+.menu-item.has-actions{ padding-left:12px }
+.menu-item::before{
+  content:""; position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  width:14px; height:14px; border-radius:999px; box-shadow:0 0 0 3px rgba(0,155,58,.18);
+  background:linear-gradient(135deg, var(--brand-2), var(--brand));
+}
+.menu-item.has-actions::before{ display:none }
+.menu-item .item-label{flex:1}
+.menu-item .item-actions{display:flex; align-items:center; gap:8px}
+/* mini botões (ícones redondos) */
+.mini-btn{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.2)}
+.mini-btn img{display:block; width:100%; height:100%; object-fit:cover}
+.mini-btn:hover{box-shadow:0 0 0 4px var(--ring)}
+
+/* Botão com ícone embutido */
+.btn .icon{width:18px; height:18px; border-radius:50%; object-fit:cover}
+/* Marca-d'água no cardápio */
+#cardapio .menu-card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:url('/images/bandeira brasil+espanha.jpg');
+  background-repeat:no-repeat; background-position:center; background-size:cover;
+  opacity:.08; filter:saturate(120%);
+}
+
+/* Overlay da logo no cardápio */
+#cardapio .menu-figure{ position:relative }
+#cardapio .menu-overlay{
+  position:absolute; top:72px; right:96px; left:auto; z-index:5;
+  width:280px; height:280px; border-radius:999px; padding:4px;
+  background:#0c2a1a; border:3px solid var(--brand-2);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+/* Tabs do cardápio */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+.tab{
+  appearance:none; border:1px solid rgba(255,255,255,.12); padding:10px 14px; border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); color:var(--text);
+  font-weight:800; cursor:pointer; transition: box-shadow .2s ease, transform .12s ease, background .2s ease;
+}
+.tab[aria-selected="true"], .tab:hover{box-shadow:0 0 0 6px var(--ring); transform:translateY(-1px)}
+
+/* Promos (layout: destaque + miniaturas) */
+.carousel.card{padding:4px}
+.track{gap:6px; padding-bottom:4px}
+/* Miniaturas (default) */
+.promo{min-width:120px; width:120px; max-width:120px; flex:0 0 120px; padding:6px; scroll-snap-align:start}
+.promo{position:relative; transition:transform .15s ease, box-shadow .2s ease}
+.promo.thumb{min-width:120px}
+.promo .media{display:block; width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,.18); margin-bottom:4px}
+.promo .badge{position:absolute; top:6px; right:6px; padding:2px 6px; font-size:9px; border-radius:999px; background:linear-gradient(135deg,var(--brand-2),var(--brand)); color:#05210f; font-weight:800}
+.promo h3{font-size:12px; margin:2px 0}
+.promo p{margin:.08rem 0; font-size:10px}
+.promo .price{font-size:12px}
+.promo:hover{transform:translateY(-3px)}
+/* Destaque do dia (bem maior e destacado) */
+.promo.today{
+  min-width:clamp(380px, 56vw, 560px);
+  width:clamp(380px, 56vw, 560px);
+  max-width:560px;
+  flex:0 0 clamp(380px, 56vw, 560px);
+  padding:14px;
+  border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+}
+.promo.today .media{aspect-ratio:16/9; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.28); margin-bottom:10px}
+.promo.today .badge{top:10px; right:10px; padding:6px 10px; font-size:12px}
+.promo.today h3{font-size:22px}
+.promo.today p{font-size:14px}
+.promo.today .price{font-size:22px}
+/* Thumbs: esconder detalhes para ficar só imagem */
+.promo.thumb h3, .promo.thumb p, .promo.thumb .chips, .promo.thumb .price{display:none}
+
+/* Music hero */
+.music-hero{position:relative; overflow:hidden; padding:0}
+.music-hero .slides{position:relative; height:clamp(380px, 50vw, 560px); border-radius:calc(var(--radius) - 2px); overflow:hidden}
+.music-hero .slide{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; background:#000; opacity:0; transition:opacity .8s ease}
+.music-hero .slide.active{opacity:1}
+.music-hero::after{content:""; position:absolute; inset:0; border-radius:calc(var(--radius) - 2px); background:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.45))}
+.music-hero .overlay{position:absolute; inset:0; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:10px; text-align:left; padding:24px; display:none !important}
+.music-hero .overlay h2{margin:0; font-size:clamp(22px,3.6vw,36px); text-transform:uppercase; letter-spacing:.6px; display:none}
+.music-hero .overlay p{margin:0; color:var(--muted)}
+.music-hero .text-box{
+  background:transparent;
+  border:0;
+  backdrop-filter:none;
+  border-radius:0; padding:0; box-shadow:none;
+  max-width:none;
+}
+.music-hero .text-box .badges{justify-content:flex-start}
+.music-hero .badges{display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+.music-hero .badge-pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:999px;
+  background:linear-gradient(135deg, var(--brand-2), var(--brand));
+  color:#05210f; font-weight:800; font-size:12px;
+}
+
+/* Badges do bloco de mísica acima do título */
+.music-badges{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-start; margin:8px 0 12px}
+.music-badges .badge-pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:999px;
+  background:linear-gradient(135deg, var(--brand-2), var(--brand));
+  color:#05210f; font-weight:800; font-size:12px;
+}
+#musica .music-badges{ justify-content:center }
+
+/* Center section headings/descriptions */
+#promos{ text-align:center }
+#promos .promos-head{ flex-direction:column; align-items:center; gap:6px; text-align:center }
+#promos .promos-head h2, #promos .promos-head small{ text-align:center }
+
+#musica{ text-align:center }
+#instagram{ text-align:center }
+#ubicacion{ text-align:center }
+/* Grid para dias/horarios + mapa lado a lado */
+.loc{ display:grid; grid-template-columns: 1fr 1fr; gap:20px; align-items:start }
+@media (max-width: 880px){ .loc{ grid-template-columns:1fr } }
+
+/* Imagen más pequeña para horarios/días */
+.hours-image{
+  display:block;
+  width:100%;
+  height:clamp(280px, 42vw, 420px);
+  object-fit:contain;
+  margin:0 auto;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+/* Mapa interactivo */
+.mapbox{ margin-top:12px; overflow:hidden; border-radius:calc(var(--radius) - 2px); border:1px solid rgba(255,255,255,.12) }
+.mapbox iframe{ display:block; width:100%; height:clamp(280px, 42vw, 420px); border:0 }
+
+/* Floating WhatsApp button (com imagem) */
+.wpp-float{
+  position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom));
+  width:80px; height:80px; border-radius:999px; padding:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:none;
+  box-shadow:0 16px 36px rgba(0,0,0,.40);
+  border:0;
+  z-index:9999; transition: transform .12s ease, box-shadow .2s ease;
+}
+.wpp-float:hover{ transform: translateY(-2px); box-shadow:0 0 0 8px var(--ring), 0 18px 40px rgba(0,0,0,.45) }
+.wpp-float img{ display:block; width:100%; height:100%; border-radius:999px; object-fit:cover }
+@media (max-width: 420px){ .wpp-float{ width:70px; height:70px } }
+/* Esconder o bloco antigo (acima do título) caso ainda exista */
